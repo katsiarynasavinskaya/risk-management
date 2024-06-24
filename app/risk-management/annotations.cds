@@ -56,7 +56,7 @@ annotate service.Risks with @(
         {
             $Type : 'UI.CollectionFacet',
             Label : 'Mitigation Overview',
-            ID : 'MigrationOverview',
+            ID : 'MitigationOverview',
             Facets : [
                 {
                     $Type : 'UI.ReferenceFacet',
@@ -66,11 +66,6 @@ annotate service.Risks with @(
                 },],
         },],
     UI.LineItem : [
-        {
-            $Type : 'UI.DataField',
-            Value : miti.descr,
-            Label : '{i18n>Migration}',
-        },
         {
             $Type : 'UI.DataField',
             Label : '{i18n>Title}',
@@ -85,18 +80,16 @@ annotate service.Risks with @(
             $Type : 'UI.DataField',
             Label : '{i18n>Priority}',
             Value : prio_code,
-            Criticality : PrioCriticality,
         },
         {
             $Type : 'UI.DataField',
             Label : '{i18n>Impact}',
             Value : impact,
-            Criticality : criticality,
         },
         {
-            $Type : 'UI.DataFieldForAnnotation',
-            Target : 'bp/@Communication.Contact#contact',
-            Label : '{i18n>BusinessPartner}',
+            $Type : 'UI.DataField',
+            Value : miti.descr,
+            Label : '{i18n>Mitigation}',
         },
     ],
 );
@@ -148,7 +141,7 @@ annotate service.Risks with @(
             $Type : 'UI.DataField',
             Value : descr,
         },
-        TypeImageUrl : 'sap-icon//alert',
+        TypeImageUrl : 'sap-icon://alert',
     }
 );
 annotate service.Risks with @(
@@ -157,40 +150,24 @@ annotate service.Risks with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Value : prio_code,
-                Criticality : PrioCriticality,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : impact,
-                Label : '{i18n>Impact}',
-                Criticality : criticality,
-            },{
-                $Type : 'UI.DataField',
                 Value : title,
                 Label : '{i18n>Title}',
             },{
                 $Type : 'UI.DataField',
                 Value : owner,
                 Label : '{i18n>Owner}',
-            },
-            {
+            },{
                 $Type : 'UI.DataField',
                 Value : descr,
                 Label : '{i18n>Description}',
-            },
-            {
-                $Type : 'UI.DataFieldForAnnotation',
-                Target : 'bp/@Communication.Contact#contact1',
-                Label : '{i18n>BusinessPartner}',
+            },{
+                $Type : 'UI.DataField',
+                Value : prio_code,
+            },{
+                $Type : 'UI.DataField',
+                Value : impact,
+                Label : '{i18n>Impact}',
             },],
-    }
-);
-annotate service.Risks with @(
-    UI.FieldGroup #MigrationOverview : {
-        $Type : 'UI.FieldGroupType',
-        Data : [
-        ],
     }
 );
 annotate service.Risks with @(
@@ -203,12 +180,12 @@ annotate service.Risks with @(
                 Label : '{i18n>Mitigation}',
             },{
                 $Type : 'UI.DataField',
-                Value : miti.timeline,
-                Label : '{i18n>Timeline}',
-            },{
-                $Type : 'UI.DataField',
                 Value : miti.owner,
                 Label : '{i18n>Owner}',
+            },{
+                $Type : 'UI.DataField',
+                Value : miti.timeline,
+                Label : '{i18n>Timeline}',
             },],
     }
 );
@@ -230,21 +207,3 @@ annotate service.Mitigations with {
 annotate service.Mitigations with {
     timeline @Common.FieldControl : #ReadOnly
 };
-annotate service.Risks with {
-    prio @Common.Text : {
-            $value : prio.descr,
-            ![@UI.TextArrangement] : #TextOnly,
-        }
-};
-annotate service.BusinessPartners with @(
-    Communication.Contact #contact : {
-        $Type : 'Communication.ContactType',
-        fn : FullName,
-    }
-);
-annotate service.BusinessPartners with @(
-    Communication.Contact #contact1 : {
-        $Type : 'Communication.ContactType',
-        fn : FullName,
-    }
-);
