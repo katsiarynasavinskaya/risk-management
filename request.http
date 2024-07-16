@@ -1,0 +1,9 @@
+POST http://localhost:40963/odata/v4/service/item/addItem
+Content-Type: application/json
+Connection: keep-alive
+
+{
+    "descr":"descr",
+    "title": "title",
+    "quantity": 20
+}
